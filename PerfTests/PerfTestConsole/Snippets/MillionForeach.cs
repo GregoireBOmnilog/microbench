@@ -11,7 +11,6 @@ namespace PerfTestConsole.Snippets
     {
         public override IEnumerable<SnippetTimer> RunSnippet()
         {
-            var checkpoints = new List<SnippetTimer>();
             var list1 = Enumerable.Range(0, 1000).Select(i => new MyInt(i));
             var list2 = Enumerable.Range(0, 1000).Select(i => new MyInt(i));
 

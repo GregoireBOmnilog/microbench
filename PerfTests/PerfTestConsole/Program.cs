@@ -1,9 +1,24 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using PerfTestConsole;
+using PerfTestConsole.Snippets;
 using System.Diagnostics;
 
 Console.WriteLine("Hello, World!");
 
-test_foreach_with_select_and_records(15);
+SnippetRunner runner = new();
+
+runner
+    .Run(new MillionForeach(), 15)
+    .ToList()
+    .ForEach(r => Console.WriteLine($"{r.name} : {r.averageMs}ms"));
+
+runner
+    .Run(new Jsonning(), 15)
+    .ToList()
+    .ForEach(r => Console.WriteLine($"{r.name} : {r.averageMs}ms"));
+
+
+//test_foreach_with_select_and_records(15);
 
 //test_exception_time(15);
 
@@ -23,7 +38,6 @@ void test_exception_time(int v)
 void forEachInForEachWithRecordAlloc(int someInt)
 {
 
-    Console.WriteLine($"Took {ellapsedMs}ms for a count of {listIntermediary.Count} items. Select took {ellapsedMs - ellapsedBeforeSelect}ms, nested foreach took {ellapsedBeforeSelect}ms.");
 }
 
 void forEachException()
